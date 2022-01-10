@@ -21,19 +21,23 @@ export default function example({ data,data1,data_id1 }) {
   const [opis, setOpis] = useState('')
   const [zacetek, setZacetek] = useState('')
   const [davek, setDavek] = useState('')
+  const [picture, setPicture] = useState('')
+  const [money, setMoney] = useState('')
   const cookies = new Cookies();
   
   const game_id = data_id1;
 
   
- 
+  async function handleRegister(event){
+    window.open('/login',"_self");
+}
   const isLogged = cookies.get('userLogged');
 
     const submit = e => {
         e.preventDefault()
         
-        axios.get(`http://localhost:3000/submit-form?email=${email}&game_id=${game_id}&comment=${comment}&nagrada=${nagrada}&soba=${soba}zacetek=${zacetek}&opis=${opis}&davek=${davek}`);
-        axios.get(`http://localhost:3000/user_game_loby_add?userID=${isLogged}&game_id=${game_id}`);
+        axios.get(`http://localhost:3000/register?email=${email}&picture=${picture}&comment=${comment}&nagrada=${nagrada}&soba=${soba}zacetek=${zacetek}&opis=${opis}&davek=${davek}&money=${money}`);
+       
 
       }  
  
@@ -56,14 +60,9 @@ export default function example({ data,data1,data_id1 }) {
     <h1>IZPOLNITE PROSIM</h1>
     <div class="border-double border-4 border-indigo-600 px-6 py-6 rounded-lg">
     <form onSubmit={submit}>
-      <label htmlFor="comment" pattern="[0-9]*" >Število Igralcev (MAX):</label><br />
-      <textarea rows="1" cols="50" style={{border: '2px solid black'}}
-        name="comment"
-        value={comment}
-        onChange={e => setComment(e.target.value)}
-        /><br />
+      
       <br />
-      <label htmlFor="nagrada">Nagrada (EUR):</label><br />
+      <label htmlFor="nagrada">Username:</label><br />
       <textarea rows="1" cols="50" style={{border: '2px solid black'}}
         name="nagrada"
         value={nagrada}
@@ -71,7 +70,7 @@ export default function example({ data,data1,data_id1 }) {
         /><br />
       <br />
       
-      <label htmlFor="opis" >Opis:</label><br />
+      <label htmlFor="opis" >Password:</label><br />
       <textarea rows="1" cols="50" style={{border: '2px solid black'}}
         name="opis"
         value={opis}
@@ -79,7 +78,7 @@ export default function example({ data,data1,data_id1 }) {
         /><br />
       <br />
 
-      <label htmlFor="soba">Ime Sobe:</label><br />
+      <label htmlFor="soba">Email:</label><br />
       <textarea rows="1" cols="50" style={{border: '2px solid black'}}
         name="soba"
         value={soba}
@@ -87,7 +86,7 @@ export default function example({ data,data1,data_id1 }) {
         /><br />
       <br />
 
-      <label htmlFor="zacetek">Začetek (UTC):</label> <br />
+      <label htmlFor="zacetek">Name:</label> <br />
       <textarea rows="1" cols="50" style={{border: '2px solid black'}}
         name="zacetek"
         value={zacetek}
@@ -95,7 +94,7 @@ export default function example({ data,data1,data_id1 }) {
         /><br />
       <br />
 
-      <label htmlFor="davek">Plačilo na posameznega igralca (EUR):</label> <br />
+      <label htmlFor="davek">Surname:</label> <br />
       <textarea rows="1" cols="50" style={{border: '2px solid black'}}
         name="davek"
         value={davek}
@@ -104,35 +103,43 @@ export default function example({ data,data1,data_id1 }) {
       <br />
    
       
-      <label htmlFor="email">Tip Igre - Counter Strike GO ali League Of Legends</label> <br />
-      <div class="flex justify-center">
-  <div class="mb-3 xl:w-96">
-    <select name="email" value={email} onChange={e => setEmail(e.target.value)} class="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-        <option selected></option>
-        <option value="Counter Strike GO">Counter Strike GO</option>
-        <option value="League of Legends">League of Legends</option>
-     
-       
-    </select>
-  </div>
-</div>
+      <label htmlFor="email">Taxnumber:</label> <br />
+      <textarea rows="1" cols="50" style={{border: '2px solid black'}}
+        name="email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        /><br />
+      <br />
+
+      <label htmlFor="comment">Phone:</label> <br />
+      <textarea rows="1" cols="50" style={{border: '2px solid black'}}
+        name="comment"
+        value={comment}
+        onChange={e => setComment(e.target.value)}
+        /><br />
+      <br />
+
+      <label htmlFor="money">Money:</label> <br />
+      <textarea rows="1" cols="50" style={{border: '2px solid black'}}
+        name="money"
+        value={money}
+        onChange={e => setMoney(e.target.value)}
+        /><br />
+      <br />
+
+      <label htmlFor="picture">Picture:</label> <br />
+      <textarea rows="1" cols="50" style={{border: '2px solid black'}}
+        name="picture"
+        value={picture}
+        onChange={e => setPicture(e.target.value)}
+        /><br />
       <br />
       <br />
-      <button type="submit" class="p-4 bg-blue-700 hover:bg-blue-500 w-50 rounded-lg shadow text-xl font-medium uppercase text-white"
+
+      <br />
+      
+      <button  type="submit" class="p-4 bg-blue-700 hover:bg-blue-500 w-50 rounded-lg shadow text-xl font-medium uppercase text-white"  type="button"
+                    onClick={handleRegister}
   >  Submit!  </button><br />
     </form>
     

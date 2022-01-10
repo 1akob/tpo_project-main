@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express();
 const port = 3000;
+
+
 app.use(express.urlencoded({
   extended: true
 }))
@@ -18,6 +20,48 @@ var con = mysql.createConnection({
 })
 
 
+app.get('/register', (req, res) => {
+  let email = req.query.email;
+  let soba = req.query.soba;
+  let comment = req.query.comment;
+  let nagrada = req.query.nagrada;
+  let opis = req.query.opis;
+  let zacetek = req.query.zacetek;
+  let davek = req.query.davek;
+  let money = req.query.money;
+  let picture = req.query.picture;
+    console.log(email)
+    console.log()
+    
+const myArray = soba.split("=");
+
+    console.log(myArray[0].replace("zacetek",""))
+    console.log(myArray[1])
+    console.log()
+    console.log(comment)
+    console.log()
+    console.log(nagrada)
+    console.log()
+    console.log(opis)
+    console.log()
+    console.log(zacetek)
+    console.log()
+    console.log(soba)
+    console.log()
+    console.log(davek)
+    console.log()
+    console.log(picture)
+  
+    let sql = `INSERT INTO user (username,password,email,name,surname,taxnumber,phone,picture,money)
+VALUES ("${nagrada}","${opis}","${myArray[0].replace("zacetek","")}","${myArray[1]}","${davek}","${email}","${comment}","${picture}",${money});`;
+    con.query(sql, function(err, data, fields) {  
+      if (err) throw err;
+      res.json(
+        data
+      )
+    })
+  });
+
 app.get('/submit-form', (req, res) => {
   let email = req.query.email;
   let soba = req.query.soba;
@@ -26,6 +70,7 @@ app.get('/submit-form', (req, res) => {
   let opis = req.query.opis;
   let zacetek = req.query.zacetek;
   let davek = req.query.davek;
+  let game_id = req.query.game_id;
     console.log(email)
     console.log()
     
@@ -42,8 +87,8 @@ const myArray = soba.split("=");
     console.log()
     console.log(zacetek)
   
-    let sql = `INSERT INTO game_loby (game_name,davek_igre,tourtament_id,server_id,status, Igralcev, game_sum, opis, name, Game_id,time)
-VALUES ("${email}",${davek},1,1,1, ${comment}, ${nagrada}, "${opis}", "${myArray[0].replace("zacetek","")}", 1,"${myArray[1]}");`;
+    let sql = `INSERT INTO game_loby (id,game_name,davek_igre,tourtament_id,server_id,status, Igralcev, game_sum, opis, name, Game_id,time)
+VALUES (${game_id},"${email}",${davek},1,1,1, ${comment}, ${nagrada}, "${opis}", "${myArray[0].replace("zacetek","")}", 1,"${myArray[1]}");`;
     con.query(sql, function(err, data, fields) {  
       if (err) throw err;
       res.json(
@@ -264,6 +309,29 @@ app.post('/usrusr', function(req, res) {
     )
   })
 });
+
+app.get('/forma', function(req, res) {
+  let sql = `select max(id) as id from game_loby `;
+  con.query(sql, function(err, data, fields) {
+    if (err) throw err;
+    res.json(
+      data
+    )
+  })
+});
+
+app.get('/user_game_loby_add', function(req, res) { 
+  console.log("kle pride") 
+  let sql=`insert into game_loby_has_user (game_loby_id,game_loby_Game_id,user_id) values(?,1,?)`;
+  con.query(sql,[req.query.game_id,req.query.userID], function(err, data, fields) {
+    if (err) throw err;
+    res.json(
+      data
+    )
+  })
+});
+
+
 
 
 app.listen(port, () => {

@@ -19,6 +19,9 @@ export default function Login({ data })  {
         event.preventDefault();
         setSignInPassword(event.target.value);
     }
+    async function handleRegister(event){
+        window.open('/register',"_self");
+    }
 
     async function handleSignIn(event) {       
         const cookies = new Cookies();
@@ -82,6 +85,12 @@ export default function Login({ data })  {
                     type="button"
                     onClick={handleSignIn}>
                         Sign In
+                </button>
+                <br></br>
+                <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded" 
+                    type="button"
+                    onClick={handleRegister}>
+                        Register
                 </button>
             </div>
             </div>

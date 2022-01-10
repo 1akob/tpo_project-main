@@ -14,6 +14,10 @@ export default function Login({ data })  {
         setSignInEmail(event.target.value);
         
     }
+    async function handleRegister(event){
+        window.open('/register',"_self");
+    }
+
 
     function handleSignInPasswordFieldChange(event) {
         event.preventDefault();
@@ -82,6 +86,12 @@ export default function Login({ data })  {
                     type="button"
                     onClick={handleSignIn}>
                         Sign In
+                </button>
+                <br></br>
+                <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded" 
+                    type="button"
+                    onClick={handleRegister}>
+                        Register
                 </button>
             </div>
             </div>

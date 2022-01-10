@@ -1,4 +1,4 @@
-import styles from '.\\..\\styles\\Home.module.css'
+import styles from '../../styles/Home.module.css'
 export const getStaticPaths = async (context) => {
     
     //http://localhost:3000/loby?ime=${gameID}

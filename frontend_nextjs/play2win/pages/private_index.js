@@ -31,7 +31,7 @@ export default function example({ data,data1 }) {
                 <a href="#">
                   <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2">{item.name}</h5>
                 </a>
-                <p class="font-normal text-gray-700 mb-3">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+               
                 
               </div>
             </div>
@@ -45,22 +45,24 @@ export default function example({ data,data1 }) {
   <div class="container mx-auto p-6 grid grid-cols-4 gap-5">
         {data1.map(item => (
         
-          <Link href={`/tourtament/${item.id}`} id={item.id}>
-          <div key={data.id} className=" h-full hover:brightness-95 cursor-pointer ">
-            <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm flex flex-col">
+        <Link href={`/tourtament/${item.id}`} id={item.id}>
+        <div key={data.id} className=" h-full hover:brightness-95 cursor-pointer ">
+          <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm flex flex-col">
+            <a href="#">
+              <img class="rounded-t-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTECCIWNcvhPA18YPG6kv4W-Z9n8IHar_YjuA&usqp=CAU" alt=""/>
+            </a>
+            <div class="p-5 h-full mt-auto">
               <a href="#">
-                <img class="rounded-t-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTECCIWNcvhPA18YPG6kv4W-Z9n8IHar_YjuA&usqp=CAU" alt=""/>
+                <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2">{item.name}</h5>
               </a>
-              <div class="p-5 h-full mt-auto">
-                <a href="#">
-                  <h5 class="text-gray-900 font-bold text-2xl tracking-tight mb-2">{item.name}</h5>
-                </a>
-                <p class="font-normal text-gray-700 mb-3">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                
-              </div>
+              <p class="font-normal text-gray-700 mb-3">Omejitev igralcev: {item.max_players}</p>
+              <p class="font-normal text-gray-700 mb-3">Nagrada: {item.reward}</p>
+              <p class="font-normal text-gray-700 mb-3">Začetni vložek: {item.stake}</p>
+              
             </div>
           </div>
-          </Link>
+        </div>
+        </Link>
         ))}
         </div>
   </div>
